@@ -47,11 +47,14 @@ class LoginController extends Controller
             'email' => 'required|email',
             'password' => 'required',
         ]);
-   
+        $notification = array(
+            'message' => 'Successfully Login',
+            'alert-type' => 'info',
+        );
         if(auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])))
         {
             if (auth()->user()->is_admin == 1) {
-                return redirect()->route('admin.home');
+                return redirect()->route('admin.home')->with($notification);
             }else{
                 return redirect()->route('home');
             }
