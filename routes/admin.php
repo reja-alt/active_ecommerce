@@ -17,8 +17,11 @@ Route::prefix('google')->name('google.')->group( function(){
     Route::get('login', [App\Http\Controllers\GoogleController::class, 'loginWithGoogle'])->name('login');
     Route::any('callback', [App\Http\Controllers\GoogleController::class, 'callbackFromGoogle'])->name('callback');
 });
-Route::group(['prefix' => 'admin/', 'namespace' => 'App\Http\Controllers'], function(){
-    Route::get('home', 'HomeController@adminHome')->name('admin.home')->middleware('is_admin');
+
+Route::get('admin/home', [App\Http\Controllers\HomeController::class, 'adminHome'])->name('admin.home')->middleware('is_admin');
+Route::group(['prefix' => 'admin/', 'namespace' => 'App\Http\Controllers\Admin'], function(){
     //Category
     Route::get('categories', 'CategoryController@index')->name('category.index');
+    //Brand
+    Route::get('brands', 'BrandController@index')->name('brand.index');
 });

@@ -1,8 +1,6 @@
 <!doctype html>
 <html lang="en" class="semi-dark">
   @include('admin.layouts.partial.head')
-
-
 <body>
 
 
